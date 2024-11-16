@@ -7,7 +7,10 @@ This module can be used to use ags v1 alongside ags v2. You can keep both config
 - The binary will install to `agsv1`, so you can still use ags v2 through `ags`.
 - The home-manager module will wrap `agsv1`, to use a different config file than `~/.config/ags/config.js`.
 
-## Usage
+## Usage (standalone)
+- If don't want to configure `agsv1` with home-manager you can just do `nix profile install github:dtomvan/agsv1#legacyPackages.x86_64-linux.agsv1`
+
+## Usage (home-manager)
 1. Add this flake as an input to your flake containing your `home-manager` config
    ```nix
    inputs.agsv1.url = "github:dtomvan/agsv1";
@@ -39,7 +42,7 @@ This module can be used to use ags v1 alongside ags v2. You can keep both config
    ```nix
    programs.agsv1 = {
      enable = true;
-     configPath = ./ags-config/config.js;
+     configPath = ./ags-config/config.js; # If you don't specify a configPath agsv1 will assume ~/.config/ags/config.js
    };
    ```
 5. `home-manager switch`
