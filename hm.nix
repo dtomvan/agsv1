@@ -19,8 +19,8 @@ in {
 	  doConfig = cfg.configPath != null;
 	  finalPackage = if doConfig then cfg.package.overrideAttrs {
 		  nativeBuildInputs = [ pkgs.makeWrapper ];
-		  installPhase = ''
-		  wrapProgram $out/bin/agsv1 --add-flags -c ${lib.escapeShellArg cfg.configPath}
+		  postPostBuild = ''
+		  wrapProgram $out/bin/agsv1 --add-flags "-c ${lib.escapeShellArg cfg.configPath}"
 		  '';
 	  } else cfg.package;
 	in {

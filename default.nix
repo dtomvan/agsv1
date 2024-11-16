@@ -5,5 +5,6 @@ symlinkJoin {
 	postBuild = ''
 	  rm $out/bin/.ags-wrapped
 	  mv $out/bin/ags $out/bin/agsv1
+	  runHook postPostBuild
 	'';
 }
